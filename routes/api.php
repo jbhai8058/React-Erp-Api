@@ -20,3 +20,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/asidebar', [AsidebarController::class, 'index']);
+
+
+
+Route::get('/mainnav', [AsidebarController::class, 'mainnav']);
+
+
+
+Route::get('/submainnav', [AsidebarController::class, 'submainnav']);
+
+
+

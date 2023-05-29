@@ -38,4 +38,9 @@ class MainnavModule extends Model
         'is_visible',
         'sort_order',
     ];
+
+    public function submainnavModule()
+    {
+        return $this->hasMany(SubmainnavModule::class, 'module_id');
+    }
 }

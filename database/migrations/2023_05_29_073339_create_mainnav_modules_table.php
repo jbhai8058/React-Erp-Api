@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('submainnav_modules', function (Blueprint $table) {
-            $table->id('sub_module_id');
-            $table->string('sub_module_name');
-            $table->string('sub_module_icon');
-            $table->integer('is_visible');
-            $table->integer('sort_order');
+        Schema::create('mainnav_modules', function (Blueprint $table) {
+            $table->id('module_id');
+            $table->string('module_name');
+            $table->string('module_icon');
+            $table->boolean('is_visible')->default(true);
+            $table->integer('sort_order')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('submainnav_modules');
+        Schema::dropIfExists('mainnav_modules');
     }
 };

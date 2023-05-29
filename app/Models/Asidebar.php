@@ -43,11 +43,15 @@ class Asidebar extends Model
         'sort_order',
         'vr_rights',
         'vr_icon',
-        'report_id',
-        'vr_post_method',
-        'report_dynamically_parm',
-        'is_tax',
-        'company_id',
-        'uid'
     ];
+
+    public function mainnavModule()
+    {
+        return $this->belongsTo(MainnavModule::class, 'module_id', 'module_id');
+    }
+
+    public function submainnavModule()
+    {
+        return $this->belongsTo(SubmainnavModule::class, 'sub_module_id', 'sub_module_id');
+    }
 }

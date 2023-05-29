@@ -11,17 +11,24 @@ class AsidebarController extends Controller
 {
     public function index()
     {
-        $mainNavModules = MainnavModule::all();
-        $subMainNavModules = SubmainnavModule::all();
-        $asidebarData = Asidebar::all();
+        $result = Asidebar::all();
+        return $result;
+    }
 
-        $responseData = [
-            'mainNavModules' => $mainNavModules,
-            'subMainNavModules' => $subMainNavModules,
-            'asidebarData' => $asidebarData
-        ];
 
-        return $responseData;
+    public function mainnav()
+    {
+        
+        $result = MainnavModule::all();
+        $result->submainnavModule;
+        return $result;
+    }
+
+
+    public function submainnav()
+    {
+        $result = SubmainnavModule::all();
+        return $result;
     }
 
 }

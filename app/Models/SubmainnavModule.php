@@ -34,8 +34,14 @@ class SubmainnavModule extends Model
      */
     protected $fillable = [
         'sub_module_name',
+        'module_id',
         'sub_module_icon',
         'is_visible',
         'sort_order',
     ];
+
+    public function mainnavModule()
+    {
+        return $this->hasMany(MainnavModule::class, 'module_id');
+    }
 }
