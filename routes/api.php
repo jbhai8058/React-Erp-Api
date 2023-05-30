@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsidebarController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\MainNavController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('departments/{department}', [DepartmentController::class, 'show']);
 
-Route::get('projects/{department}', [ProjectController::class, 'show']);
+Route::get('mainnav/{mainnav}', [MainNavController::class, 'show']);
+
+Route::get('asidebar/{mainnav}', [AsidebarController::class, 'show']);

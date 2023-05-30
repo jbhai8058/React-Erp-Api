@@ -9,26 +9,13 @@ use Illuminate\Http\Request;
 
 class AsidebarController extends Controller
 {
-    public function index()
+    public function show($mainnavId)
     {
-        $result = Asidebar::all();
-        return $result;
-    }
+        $asidebar = Asidebar::with('mainnavModule', 'submainnavModule')
+            ->where('mainnav_module_id', $mainnavId)
+            ->first();
 
-
-    public function mainnav()
-    {
-        
-        $result = MainnavModule::all();
-        $result->submainnavModule;
-        return $result;
-    }
-
-
-    public function submainnav()
-    {
-        $result = SubmainnavModule::all();
-        return $result;
+        return response()->json($asidebar);
     }
 
 }

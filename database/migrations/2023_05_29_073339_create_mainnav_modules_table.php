@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mainnav_modules', function (Blueprint $table) {
-            $table->id('module_id');
+            $table->id();
             $table->string('module_name');
             $table->string('module_icon');
             $table->boolean('is_visible')->default(true);

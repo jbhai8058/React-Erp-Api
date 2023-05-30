@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('asidebars', function (Blueprint $table) {
-            $table->id('asidebars_id');
-            $table->unsignedBigInteger('module_id');
+            $table->id();
+            $table->unsignedBigInteger('mainnav_module_id');
             $table->unsignedBigInteger('sub_module_id');
             $table->string('vr_title');
             $table->string('vr_link');
@@ -22,14 +22,12 @@ return new class extends Migration
             $table->string('sort_order');
             $table->string('vr_rights');
             $table->string('vr_icon');
+            $table->timestamps();
 
             // Add foreign key constraints
-            $table->foreign('module_id')->references('module_id')->on('mainnav_modules')->where('vr_title', 'Your Desired Value');;
-            $table->foreign('sub_module_id')
-                ->references('sub_module_id')
-                ->on('submainnav_modules')
-                ->where('vr_title', 'Your Desired Value');
-            $table->timestamps();
+            $table->foreign('mainnav_module_id')->references('id')->on('mainnav_modules')->onDelete('cascade');
+            $table->foreign('sub_module_id')->references('id')->on('submainnav_modules')->onDelete('cascade');
+
         });
     }
 

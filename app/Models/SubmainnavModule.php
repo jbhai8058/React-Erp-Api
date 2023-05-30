@@ -7,41 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubmainnavModule extends Model
 {
-    protected $table = 'submainnav_modules';
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'sub_module_id';
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = true;
-    /**
-     * The storage format of the model's date columns.
-     *
-     * @var string
-     */
-    protected $dateFormat = 'U';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'sub_module_name',
-        'module_id',
-        'sub_module_icon',
-        'is_visible',
-        'sort_order',
-    ];
-
     public function mainnavModule()
     {
-        return $this->hasMany(MainnavModule::class, 'module_id');
+        return $this->hasMany(MainnavModule::class);
+    }
+
+    public function asidebars()
+    {
+        return $this->hasMany(Asidebar::class);
     }
 }
