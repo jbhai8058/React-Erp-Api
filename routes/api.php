@@ -23,6 +23,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('mainnav/{mainnav}', [MainNavController::class, 'show']);
+Route::get('data', [MainNavController::class, 'getData']);
 
 Route::get('asidebar/{mainnav}', [AsidebarController::class, 'show']);
