@@ -9,11 +9,6 @@ class SubmainnavModule extends Model
 {
     public function mainnavModule()
     {
-        return $this->hasMany(MainnavModule::class);
-    }
-
-    public function asidebars()
-    {
-        return $this->hasMany(Asidebar::class);
+        return $this->belongsTo(MainnavModule::class);
     }
 }

@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('submainnav_modules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mainnav_module_id');
+            $table->foreignId('mainnav_module_id')->constrained('mainnav_modules');
             $table->string('sub_module_name');
             $table->string('sub_module_icon');
             $table->boolean('is_visible')->default(true);
             $table->integer('sort_order')->nullable();
             $table->timestamps();
-
-            $table->foreign('mainnav_module_id')->references('id')->on('mainnav_modules')->onDelete('cascade');
         });
     }
 

@@ -15,6 +15,6 @@ class Asidebar extends Model
 
     public function submainnavModule()
     {
-        return $this->belongsTo(SubmainnavModule::class, 'sub_module_id');
+        return $this->belongsTo(SubmainnavModule::class);
     }
 }

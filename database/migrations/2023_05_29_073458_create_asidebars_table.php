@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('asidebars', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mainnav_module_id');
-            $table->unsignedBigInteger('sub_module_id');
+            $table->foreignId('mainnav_module_id')->constrained('mainnav_modules');
+            $table->foreignId('sub_module_id')->constrained('submainnav_modules');
             $table->string('vr_title');
             $table->string('vr_link');
             $table->string('vr_type');
@@ -23,10 +23,6 @@ return new class extends Migration
             $table->string('vr_rights');
             $table->string('vr_icon');
             $table->timestamps();
-
-            // Add foreign key constraints
-            $table->foreign('mainnav_module_id')->references('id')->on('mainnav_modules')->onDelete('cascade');
-            $table->foreign('sub_module_id')->references('id')->on('submainnav_modules')->onDelete('cascade');
 
         });
     }
