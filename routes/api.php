@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsidebarController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MainNavController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
@@ -22,5 +23,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-
+// mainnav api
 Route::get('data', [MainNavController::class, 'getData']);
+
+// item api
+Route::get('/item',[ItemController::class,'fetchitem']);
