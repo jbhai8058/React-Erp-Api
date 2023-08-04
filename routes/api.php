@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('data', [MainNavController::class, 'getData']);
 
 // item api
-Route::get('/item',[ItemController::class,'fetchitem']);
 
-Route::post('/store-information', [ItemController::class, 'storeItem'])->name('api.information.store');
+Route::post('/itemsave', [ItemController::class, 'storeItem'])->name('api.itemsave');
+
+Route::post('/getmaxid', [ItemController::class, 'getMaxId'])->name('api.getmaxid');
