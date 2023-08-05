@@ -4,27 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
-    public function fetchitem()
+    public function fetchItem()
     {
-        $result = Item::all();
-
-        return $result;
+        // Retrieve the item from the database based on the provided ID
+        $item = Item::all();
+        return $item;
     }
 
     public function storeItem(Request $request)
     {
         $ContactArray = json_decode($request->getContent(), true);
 
-        $id          = $ContactArray['id'];
-        $item_name   = $ContactArray['item_name'];
+        $id = $ContactArray['id'];
+        $item_name = $ContactArray['item_name'];
         $description = $ContactArray['description'];
 
         $result = Item::insert([
-            'id'          => $id,
-            'item_name'   => $item_name,
+            'id' => $id,
+            'item_name' => $item_name,
             'description' => $description,
         ]);
 
@@ -35,15 +36,9 @@ class ItemController extends Controller
         }
     }
 
-    public function getMaxId(Request $request)
+    public function getMaxId()
     {
-
-        $ContactArray = json_decode($request->getContent(), true);
-
-        $id = $ContactArray['id'];
-
-        $result = Item::getmaxid($id);
-
-        return response()->json(['max_id' => $result], 200);
+        $result = Item::getMaxId() + 1;
+        return json_encode($result);
     }
 }

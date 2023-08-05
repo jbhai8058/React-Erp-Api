@@ -31,3 +31,5 @@ Route::get('data', [MainNavController::class, 'getData']);
 Route::post('/itemsave', [ItemController::class, 'storeItem'])->name('api.itemsave');
 
 Route::post('/getmaxid', [ItemController::class, 'getMaxId'])->name('api.getmaxid');
+
+Route::post('/fetchitem', [ItemController::class, 'fetchitem'])->name('item.fetchitem');
