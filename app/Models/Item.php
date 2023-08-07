@@ -29,4 +29,17 @@ class Item extends Model
         
         return $result;
     }
+
+    public static function fetch($item_id)
+    {
+        $result = DB::table('item')
+            ->where('item_id', $item_id)
+            ->get();
+
+        if (Count($result) > 0) {
+            return CommonFunctions::convertObjectToArray($result);
+        } else {
+            return false;
+        }
+    }
 }

@@ -8,11 +8,19 @@ use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
-    public function fetchItem()
+    public function fetchItem(Request $request)
     {
-        // Retrieve the item from the database based on the provided ID
-        $item = Item::all();
-        return $item;
+        $item_id = $request->input('item_id');
+        $result = Item::fetch($item_id);
+
+        $response = "";
+        if ($result === false) {
+            $response = 'false';
+        } else {
+            $response = $result;
+        }
+
+        return json_encode($response);
     }
 
     public function storeItem(Request $request)
