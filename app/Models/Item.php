@@ -32,14 +32,10 @@ class Item extends Model
 
     public static function fetch($item_id)
     {
-        $result = DB::table('item')
+        $result = DB::table('items')
             ->where('item_id', $item_id)
             ->get();
 
-        if (Count($result) > 0) {
-            return CommonFunctions::convertObjectToArray($result);
-        } else {
-            return false;
-        }
+        return $result;
     }
 }

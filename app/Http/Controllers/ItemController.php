@@ -10,10 +10,10 @@ class ItemController extends Controller
 {
     public function fetchItem(Request $request)
     {
-        $item_id = $request->input('item_id');
+        $item_id = json_decode($request->input('item_id'), true);;
         $result = Item::fetch($item_id);
 
-        $response = "";
+        $response = '';
         if ($result === false) {
             $response = 'false';
         } else {
@@ -32,7 +32,7 @@ class ItemController extends Controller
         $description = $ContactArray['description'];
 
         $result = Item::insert([
-            'id' => $id,
+            'item_id' => $id,
             'item_name' => $item_name,
             'description' => $description,
         ]);
