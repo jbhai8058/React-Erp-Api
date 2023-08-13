@@ -10,9 +10,13 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id', // Add other fields here if needed
-    ];
+    protected $primaryKey = 'item_id';
+
+
+    protected $fillable = ['item_id', 'item_name', 'description'];
+
+    public $timestamps = false;
+
 
     protected $guarded = [];
 
@@ -21,15 +25,6 @@ class Item extends Model
         $result = DB::table('items')->max('item_id');
         return $result;
     }
-
-
-    public static function fetchitem()
-    {
-        $result = DB::table('items')->get()->all();
-        
-        return $result;
-    }
-
     public static function fetch($item_id)
     {
         $result = DB::table('items')

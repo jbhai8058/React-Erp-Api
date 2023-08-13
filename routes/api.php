@@ -23,6 +23,22 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+// Login Routes
+Route::post('/login', [LoginController::class,'Login']);
+
+// Register Routes
+Route::post('/register', [LoginController::class,'Register']);
+
+// Forget Password Routes
+Route::post('/forgetpassword', [ForgetController::class,'ForgetPassword']);
+
+// Reset Password Routes
+Route::post('/resetpassword', [ResetController::class,'ResetPassword']);
+
+// Current User Routes
+Route::get('/currentuser', [CurrentUserController::class,'CurrentUser'])->middleware('auth:api');
+
 // mainnav api
 Route::get('data', [MainNavController::class, 'getData']);
 
@@ -33,3 +49,6 @@ Route::post('/itemsave', [ItemController::class, 'storeItem'])->name('api.itemsa
 Route::post('/getmaxid', [ItemController::class, 'getMaxId'])->name('api.getmaxid');
 
 Route::post('/fetchitem', [ItemController::class, 'fetchitem'])->name('item.fetchitem');
+
+
+

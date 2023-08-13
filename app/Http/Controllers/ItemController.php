@@ -10,8 +10,13 @@ class ItemController extends Controller
 {
     public function fetchItem(Request $request)
     {
-        $item_id = json_decode($request->input('item_id'), true);;
-        $result = Item::fetch($item_id);
+        $ContactArray = json_decode($request->getContent(), true);
+
+        $id = $ContactArray['id'];
+
+        $result = Item::fetch([
+            'item_id' => $id
+        ]);
 
         $response = '';
         if ($result === false) {
@@ -25,24 +30,36 @@ class ItemController extends Controller
 
     public function storeItem(Request $request)
     {
-        $ContactArray = json_decode($request->getContent(), true);
+        $contactArray = json_decode($request->getContent(), true);
 
-        $id = $ContactArray['id'];
-        $item_name = $ContactArray['item_name'];
-        $description = $ContactArray['description'];
+        $id = $contactArray['id'];
+        $item_name = $contactArray['item_name'];
+        $description = $contactArray['description'];
 
-        $result = Item::insert([
-            'item_id' => $id,
-            'item_name' => $item_name,
-            'description' => $description,
-        ]);
+        $existingItem = Item::where('item_id', $id)->first();
 
-        if ($result == true) {
-            return 'Item saved Sucessfully.....';
+        if ($existingItem) {
+            // Update the existing item
+            $result = $existingItem->update([
+                'item_name' => $item_name,
+                'description' => $description,
+            ]);
         } else {
-            return 0;
+            // Insert a new item
+            $result = Item::insert([
+                'item_id' => $id,
+                'item_name' => $item_name,
+                'description' => $description,
+            ]);
+        }
+
+        if ($result) {
+            return 'Item saved successfully.';
+        } else {
+            return 'An error occurred while saving the item.';
         }
     }
+
 
     public function getMaxId()
     {
