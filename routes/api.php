@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\AsidebarController;
+use App\Http\Controllers\CurrentUserController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ForgetController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainNavController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
