@@ -20,7 +20,7 @@ class LoginController extends Controller
             if (Auth::attempt($request->only('email', 'password'))) {
                 $user = Auth::user();
                 // ma AuthUser ki jaga pay variable $user b use kar sakta ho lakin us kay liyay mujy agay object lagana ho ga object matlb  -> ya sign
-                $token = $user->createToken('app')->accessToken;
+                $token = $user->createToken('app')->plainTextToken;
 
                 return response([
                     'message' => "Successfully Login",
@@ -61,7 +61,11 @@ class LoginController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-            $token = $user->createToken('app')->accessToken;
+            
+            // $token = $user->createToken('app')->accessToken;
+
+            // Create a new token for the user
+        $token = $user->createToken('app')->plainTextToken;
 
             return response([
                   'message' => "Registation Successfull",
