@@ -66,4 +66,26 @@ class ItemController extends Controller
         $result = Item::getMaxId() + 1;
         return json_encode($result);
     }
+
+    public function deleteitem(Request $request)
+    {
+        $contactArray = json_decode($request->getContent(), true);
+
+        $id = $contactArray['id'];
+
+
+        $itemToDelete = Item::where('item_id', $id)->first();
+
+        if ($itemToDelete) {
+            $result = $itemToDelete->delete();
+
+            if ($result) {
+                return 'Item deleted successfully.';
+            } else {
+                return 'An error occurred while deleting the item.';
+            }
+        } else {
+            return 'Item not found.';
+        }
+    }
 }
