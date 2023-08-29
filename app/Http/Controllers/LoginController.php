@@ -28,10 +28,9 @@ class LoginController extends Controller
                     'user' => $user
                 ], 200); // state code
             }
-
         } catch (\Exception $exception) {
             return response([
-                'message' =>$exception->getMessage()
+                'message' => $exception->getMessage()
             ], 400);
         }
         return response([
@@ -41,19 +40,20 @@ class LoginController extends Controller
 
 
 
-    
-// {/* ---------------------------------------------------
-// ---------------------------------------------------------- */}
+
+    // {/* ---------------------------------------------------
+    // ---------------------------------------------------------- */}
 
 
 
-     public function Register(RegisterRequest $request){
-           
+    public function Register(RegisterRequest $request)
+    {
+
         try {
             $emailcheck = DB::table('users')->where('email', $request->email)->first();
             if ($emailcheck) {
                 return response([
-                    'message' => 'This ' .$request->email . ' E-Mail is already registered...!'
+                    'message' => 'This ' . $request->email . ' E-Mail is already registered...!'
                 ], 200);
             }
             $user = User::create([
@@ -61,23 +61,22 @@ class LoginController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-            
+
             // $token = $user->createToken('app')->accessToken;
 
             // Create a new token for the user
-        $token = $user->createToken('app')->plainTextToken;
+            $token = $user->createToken('app')->plainTextToken;
 
             return response([
-                  'message' => "Registation Successfull",
-                  'token' => $token,
-                  'user' => $user
-            ],200);
-
+                'message' => "Registation Successfull",
+                'token' => $token,
+                'user' => $user
+            ], 200);
         } catch (\Exception $exception) {
             return response([
-                'message' =>$exception->getMessage()
+                'message' => $exception->getMessage()
             ], 400);
         }
-     }// end Register method
+    } // end Register method
 
 }
