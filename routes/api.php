@@ -56,3 +56,7 @@ Route::post('/fetchitem', [ItemController::class, 'fetchitem'])->name('item.fetc
 
 Route::delete('/deleteitem', [ItemController::class, 'deleteitem'])->name('item.deleteitem');
 
+// department store
+
+Route::post('/departmentsave', [DepartmentController::class, 'storedepartment'])->name('api.departmentsave');
+
