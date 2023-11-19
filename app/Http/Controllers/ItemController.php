@@ -88,4 +88,11 @@ class ItemController extends Controller
             return 'Item not found.';
         }
     }
+
+    public function fetchItems()
+    {
+        $items = Item::all();
+
+        return response()->json($items);
+    }
 }

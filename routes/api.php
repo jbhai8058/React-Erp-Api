@@ -54,5 +54,7 @@ Route::post('/getmaxid', [ItemController::class, 'getMaxId'])->name('api.getmaxi
 
 Route::post('/fetchitem', [ItemController::class, 'fetchitem'])->name('item.fetchitem');
 
+Route::get('/fetchitems', [ItemController::class, 'fetchItems'])->name('item.fetchItems');
+
 Route::delete('/deleteitem', [ItemController::class, 'deleteitem'])->name('item.deleteitem');
 
